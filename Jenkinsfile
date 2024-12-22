@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo '===========Checking out code================='
-                    git url: 'https://github.com/sam99235/learn_jenkins.git', branch: "main"
+                    git url: 'https://github.com/sam99235/akaunting_docker_app.git', branch: "main"
                     
                     //force building now 
                     //checkout scm: [$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/your-repo.git']]]                
@@ -37,7 +37,7 @@ pipeline {
                     bat 'trivy --version'
                     
                     // List of services to scan
-                    def services = ['app', 'mysql']
+                    def services = ['akaunting', 'akaunting-db']
                     
                     // Loop through services to scan each image
                     for (service in services) {
