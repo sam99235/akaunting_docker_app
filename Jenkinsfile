@@ -4,8 +4,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    echo '===========Checking out code================='
-                    git url: 'https://github.com/sam99235/akaunting_docker_app.git', branch: "main"       
+                    echo '===========Cloning the repo================='
+                    git url: 'https://github.com/sam99235/akaunting_docker_app.git', branch: "main"      
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
                     //show retrieved data on the runtime 
                     //bat "docker-compose config"
         
-                    // List of services to scan
+                    // List of services to scan 
                     def services = ['akaunting', 'akaunting-db']
                     
                     // Loop through services to scan each image
