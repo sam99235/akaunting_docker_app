@@ -63,14 +63,14 @@ pipeline {
             script {
                 
                 echo "=============turning OFF containers==============="
-                bat "docker-compose down"
+                bat 'docker-compose down'
                 echo "=====LOG====docker-compose-exit-code2: %ERRORLEVEL%"
                 
                 echo "=============cleaning up the workspace==============="
-                bat "del /q /s * && for /d %%p in (*) do rmdir "%%p" /s /q"
+                bat 'del /q /s * && for /d %%p in (*) do rmdir "%%p" /s /q'
                 
                 echo "=============removing the .git folder==============="
-                bat "rmdir /s /q .git"
+                bat 'rmdir /s /q .git'
             }
         }
     } 
