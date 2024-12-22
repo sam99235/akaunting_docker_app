@@ -46,8 +46,7 @@ pipeline {
                             // this line below works  
                             // info it trivy is fixing vuln stuff
                             def scanResult = bat(script: "trivy image --light --severity CRITICAL,HIGH --format json -o D:\\Desktop\\${service}_scan_report.json ${imageId_trimmed}", returnStdout: true)
-                            echo """Scan result for ${service} is done ::: \n Report file is on 
-                                    \n D:\\Desktop\\${service}_scan_report.json"""
+                            echo "===============Scan-Report-file--->\nD:\\Desktop\\${service}_scan_report.json========"
                             
                             // Run Trivy scan containers and save report on a file for each image
                             // bat 'trivy -q image --light --severity CRITICAL,HIGH --format json -o "D:\\Desktop\\${service}_scan_report.json" ${imageId_trimmed}'
