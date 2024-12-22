@@ -1,14 +1,11 @@
-version: '3.7'
-
 services:
-
   akaunting:
     container_name: akaunting
     image: docker.io/akaunting/akaunting:latest
     build:
       context: .
     ports:
-      - 8080:80
+      - 8088:80
     volumes:
       - akaunting-data:/var/www/html
     restart: unless-stopped
@@ -21,7 +18,9 @@ services:
 
   akaunting-db:
     container_name: akaunting-db
-    image: mariadb
+    image: mysql:latest 
+    ports:
+      - 8033:3306
     volumes:
       - akaunting-db:/var/lib/mysql
     restart: unless-stopped
