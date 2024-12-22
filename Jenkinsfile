@@ -27,7 +27,9 @@ pipeline {
                     
                     // Display Trivy version
                     bat "trivy --version"
-                    bat "docker-compose config"
+
+                    //show retrieved data on the runtime 
+                    //bat "docker-compose config"
         
                     // List of services to scan
                     def services = ['akaunting', 'akaunting-db']
