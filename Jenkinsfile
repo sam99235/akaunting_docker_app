@@ -5,21 +5,18 @@ pipeline {
             steps {
                 script {
                     echo '===========Checking out code================='
-                    git url: 'https://github.com/sam99235/akaunting_docker_app.git', branch: "main"
-                    
-                    //force building now 
-                    //checkout scm: [$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'https://github.com/your-repo.git']]]                
+                    git url: "https://github.com/sam99235/akaunting_docker_app.git", branch: "main"       
                 }
             }
         }
 
-        stage('Run Containers with Docker Compose') {
+        stage('Pull images & Run Containers') {
             steps {
                 // Start the services using Docker Compose
                 echo "==========pulling and running the containers======="
                 //bat 'IF EXIST docker-compose.yml echo FOUND'
-                bat 'docker-compose up -d'
-                echo '=====LOG====exit-code1: %ERRORLEVEL%'
+                bat "docker-compose up -d"
+                echo "=====LOG====exit-code1: %ERRORLEVEL%"
 
             }
         }
@@ -29,7 +26,8 @@ pipeline {
                     echo "==========Scanning the images ======="
                     
                     // Display Trivy version
-                    bat 'trivy --version'
+                    bat "trivy --version"
+                    bat "docker-compose config"
                     
                     // List of services to scan
                     def services = ['akaunting', 'akaunting-db']
@@ -41,7 +39,7 @@ pipeline {
                         def imageId_trimmed = imageId.readLines().last().trim()
 
                         if (imageId_trimmed) {
-                            echo "Scanning image for service: ${service} ${imageId_trimmed}"
+                            echo "Scanning image for service: ${service} :::: ${imageId_trimmed}"
                             
                             // this line below works  
                             // info it trivy is fixing vuln stuff
@@ -65,14 +63,14 @@ pipeline {
             script {
                 
                 echo "=============turning OFF containers==============="
-                bat 'docker-compose down'
-                echo '=====LOG====docker-compose-exit-code2: %ERRORLEVEL%'
+                bat "docker-compose down"
+                echo "=====LOG====docker-compose-exit-code2: %ERRORLEVEL%"
                 
                 echo "=============cleaning up the workspace==============="
-                bat 'del /q /s * && for /d %%p in (*) do rmdir "%%p" /s /q'
+                bat "del /q /s * && for /d %%p in (*) do rmdir "%%p" /s /q"
                 
                 echo "=============removing the .git folder==============="
-                bat 'rmdir /s /q .git'
+                bat "rmdir /s /q .git"
             }
         }
     } 
