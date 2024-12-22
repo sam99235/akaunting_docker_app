@@ -10,9 +10,9 @@ services:
       - akaunting-data:/var/www/html
     restart: unless-stopped
     env_file:
-      - env/run.env
-    environment:
-      - AKAUNTING_SETUP
+      - ${run_env}
+    # environment:
+    #   - AKAUNTING_SETUP
     depends_on:
       - akaunting-db
 
@@ -25,7 +25,7 @@ services:
       - akaunting-db:/var/lib/mysql
     restart: unless-stopped
     env_file:
-      - env/db.env
+      - ${db_env}  # add env var
 
 volumes:
   akaunting-data:
