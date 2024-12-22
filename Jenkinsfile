@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     echo '===========Checking out code================='
-                    git url: "https://github.com/sam99235/akaunting_docker_app.git", branch: "main"       
+                    git url: 'https://github.com/sam99235/akaunting_docker_app.git', branch: "main"       
                 }
             }
         }
