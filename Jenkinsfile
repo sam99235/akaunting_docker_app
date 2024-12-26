@@ -51,7 +51,7 @@ pipeline {
                 bat 'docker-compose up -d'
                 echo '=====LOG==== Exit code for Docker Compose: %ERRORLEVEL%'
         }
-        
+    }
         stage('Scan images with Trivy') {
             steps {
                 script {
