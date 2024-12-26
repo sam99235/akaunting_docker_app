@@ -1,0 +1,108 @@
+{
+    "alias": "paypal-standard",
+    "icon": "simple-icons-paypal",
+    "version": "3.0.1",
+    "active": 1,
+    "providers": [
+        "Modules\\PaypalStandard\\Providers\\Event",
+        "Modules\\PaypalStandard\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "settings": [
+        {
+            "type": "text",
+            "name": "name",
+            "title": "general.name",
+            "icon": "fa fa-font",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "text",
+            "name": "email",
+            "title": "paypal-standard::general.form.email",
+            "icon": "envelope",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|email"
+        },
+        {
+            "type": "select",
+            "name": "mode",
+            "title": "paypal-standard::general.form.mode",
+            "icon": "plane",
+            "values": {
+                "live": "Live",
+                "sandbox": "Sandbox"
+            },
+            "selected": "live",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "select",
+            "name": "transaction",
+            "title": "paypal-standard::general.form.transaction",
+            "icon": "exchange-alt",
+            "values": {
+                "authorization": "Authorization",
+                "sale": "Sale"
+            },
+            "selected": "sale",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required|string"
+        },
+        {
+            "type": "account",
+            "name": "account_id",
+            "attributes": {
+                "required": "required"
+            },
+            "rules": "required"
+        },
+        {
+            "type": "text",
+            "name": "order",
+            "title": "paypal-standard::general.form.order",
+            "icon": "sort",
+            "attributes": {},
+            "rules": "nullable|integer"
+        },
+        {
+            "type": "toggle",
+            "name": "customer",
+            "title": "paypal-standard::general.form.customer",
+            "enable": "general.yes",
+            "disable": "general.no",
+            "attributes": {},
+            "rules": "required|integer"
+        },
+        {
+            "type": "toggle",
+            "name": "debug",
+            "title": "paypal-standard::general.form.debug",
+            "enable": "general.yes",
+            "disable": "general.no",
+            "attributes": {},
+            "rules": "required|integer"
+        }
+    ],
+    "extra-modules": {},
+    "routes": {
+        "redirect_after_install": [
+            "settings.module.edit",
+            "paypal-standard"
+        ]
+    }
+}
