@@ -7,4 +7,4 @@
 https://github.com/sam99235/akaunting_docker_app/blob/main/Jenkinsfile
 
 ****scan_reports :folder****
-
+https://github.com/sam99235/akaunting_docker_app/tree/main/scan_reports
